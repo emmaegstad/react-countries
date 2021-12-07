@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import Country from './components/Country/Country';
+import Header from './components/Header/Header';
+import Main from './components/Main/Main';
 import { getCountries } from './services/countries';
 
 function App() {
@@ -16,9 +17,8 @@ function App() {
 
   return (
     <div className="App">
-      {countries.map((country) => {
-        return <Country key={country.id} {...country} />;
-      })}
+      <Header />
+      <Main {...{ countries, setCountries }} />
     </div>
   );
 }

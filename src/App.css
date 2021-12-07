@@ -1,13 +1,11 @@
 html {
-  display: flex;
-  justify-content: center;
   background-color: darkslategray;
+  color: white;
 }
 
 .App {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto;
-  text-align: center;
-  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
