@@ -5,3 +5,9 @@
   text-align: center;
   width: 80%;
 }
+
+.filters {
+  display: flex;
+  gap: 2vh;
+  margin-bottom: 3vh;
+}
