@@ -34,6 +34,7 @@ export default function Main({ countries }) {
           <option value="North America">North America</option>
           <option value="South America">South America</option>
         </select>
+        <button>Sort A-Z</button>
       </div>
       <div className="main">
         {filterCountries().map((country) => {
