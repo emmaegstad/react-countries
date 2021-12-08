@@ -7,11 +7,13 @@ export default function Main() {
   const [query, setQuery] = useState([]);
   const [continent, setContinent] = useState('All');
   const [countries, setCountries] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await getCountries();
       setCountries(data);
+      setLoading(false);
     };
     fetchData();
   }, []);
@@ -30,6 +32,7 @@ export default function Main() {
     });
   }
 
+  if (loading) return <div>Loading...</div>;
   return (
     <>
       <div className="filters">
