@@ -8,6 +8,7 @@ export default function Main() {
   const [continent, setContinent] = useState('All');
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [sorted, setSorted] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,20 +17,21 @@ export default function Main() {
       setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [countries]);
 
   function filterCountries() {
-    return countries.filter((country) => {
+    let filteredCountries = countries.filter((country) => {
       return (
         country.name.includes(query) && (country.continent === continent || continent === 'All')
       );
     });
-  }
-
-  function toggleSort() {
-    return countries.sort((a, b) => {
-      return a.name > b.name ? 1 : -1;
-    });
+    if (sorted === true) {
+      return filteredCountries.sort((a, b) => {
+        return a.name > b.name ? 1 : -1;
+      });
+    } else {
+      return filteredCountries;
+    }
   }
 
   if (loading) return <div>Loading...</div>;
@@ -53,7 +55,9 @@ export default function Main() {
           <option value="North America">North America</option>
           <option value="South America">South America</option>
         </select>
-        <button onClick={toggleSort}>Sort A-Z</button>
+        <button value={sorted} onClick={() => setSorted((prevState) => !prevState)}>
+          Sort A-Z
+        </button>
       </div>
       <div className="main">
         {filterCountries().map((country) => {

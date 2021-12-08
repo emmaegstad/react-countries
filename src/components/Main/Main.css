@@ -4,8 +4,15 @@
   grid-template-rows: auto;
   text-align: center;
   width: 80%;
+  padding: 6vh;
+  background-color: rgba(44, 59, 155, 0.3);
+  border-radius: 5px;
 }
 
+input {
+  border: none;
+  padding: 1vh;
+}
 .filters {
   display: flex;
   gap: 2vh;

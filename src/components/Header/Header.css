@@ -1,7 +1,9 @@
 .header {
-  margin: 2vh;
+  margin: 1vh;
 }
 
 h1 {
-  font-size: 4vh;
+  font-size: 7vh;
+  font-family: 'Girassol', cursive;
+  color: rgba(44, 59, 155, 1);
 }
