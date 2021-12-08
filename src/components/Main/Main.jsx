@@ -1,16 +1,32 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Main.css';
 import Country from '../Country/Country';
+import { getCountries } from '../../services/countries';
 
-export default function Main({ countries }) {
+export default function Main() {
   const [query, setQuery] = useState([]);
   const [continent, setContinent] = useState('All');
+  const [countries, setCountries] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getCountries();
+      setCountries(data);
+    };
+    fetchData();
+  }, []);
 
   function filterCountries() {
     return countries.filter((country) => {
       return (
         country.name.includes(query) && (country.continent === continent || continent === 'All')
       );
+    });
+  }
+
+  function toggleSort() {
+    return countries.sort((a, b) => {
+      return a.name > b.name ? 1 : -1;
     });
   }
 
@@ -29,12 +45,12 @@ export default function Main({ countries }) {
           <option value="Africa">Africa</option>
           <option value="Antarctica">Antarctica</option>
           <option value="Asia">Asia</option>
-          <option value="Australia">Australia</option>
+          <option value="Oceania">Oceania</option>
           <option value="Europe">Europe</option>
           <option value="North America">North America</option>
           <option value="South America">South America</option>
         </select>
-        <button>Sort A-Z</button>
+        <button onClick={toggleSort}>Sort A-Z</button>
       </div>
       <div className="main">
         {filterCountries().map((country) => {
